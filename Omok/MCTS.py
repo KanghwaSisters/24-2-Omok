@@ -243,7 +243,9 @@ def predict(model, state):
 
         # get legal policy
         legal_policy = raw_policy[state.get_legal_actions()]
-        # legal_policy /= sum(legal_policy) if sum(legal_policy) else 1
+
+    # regualization for prior p
+    legal_policy /= sum(legal_policy) if sum(legal_policy) else 1
 
     return legal_policy, value
 
